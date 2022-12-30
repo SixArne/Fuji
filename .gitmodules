@@ -1,0 +1,3 @@
+[submodule "Fuji/vendor/spdlog"]
+	path = Fuji/vendor/spdlog
+	url = https://github.com/gabime/spdlog
