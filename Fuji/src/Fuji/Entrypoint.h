@@ -13,8 +13,8 @@ extern Fuji::Application* Fuji::CreateApplication();
 int main(int argc, char** argv)
 {
 	Fuji::Log::Init();
-	F_CORE_WARN("Initialized");
-	F_INFO("Var={0}", 4);
+	F_LOG_CORE_WARN("Initialized");
+	F_LOG_INFO("Var={0}", 4);
 
 	auto app = Fuji::CreateApplication();
 	app->Run();

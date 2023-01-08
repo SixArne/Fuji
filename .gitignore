@@ -4,3 +4,5 @@
 *.vcxproj
 *.vcxproj.*
 *.user
+
+/JSON

@@ -1,3 +1,4 @@
+#include "fupch.h"
 #include "Application.h"
 
 Fuji::Application::Application()

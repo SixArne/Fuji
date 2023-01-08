@@ -4,6 +4,9 @@
     <Filter Include="Fuji">
       <UniqueIdentifier>{D371857C-BFA8-860D-6895-6C1054AB020F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fuji\Events">
+      <UniqueIdentifier>{57729429-C327-0D1F-4C1C-07F6B8D00323}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Fuji.h" />
@@ -16,12 +19,25 @@
     <ClInclude Include="src\Fuji\Entrypoint.h">
       <Filter>Fuji</Filter>
     </ClInclude>
+    <ClInclude Include="src\Fuji\Events\ApplicationEvent.h">
+      <Filter>Fuji\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fuji\Events\Event.h">
+      <Filter>Fuji\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fuji\Events\KeyEvent.h">
+      <Filter>Fuji\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fuji\Events\MouseEvent.h">
+      <Filter>Fuji\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Fuji\Log.h">
       <Filter>Fuji</Filter>
     </ClInclude>
     <ClInclude Include="src\Fuji\types.h">
       <Filter>Fuji</Filter>
     </ClInclude>
+    <ClInclude Include="src\fupch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Fuji\Application.cpp">
@@ -30,5 +46,6 @@
     <ClCompile Include="src\Fuji\Log.cpp">
       <Filter>Fuji</Filter>
     </ClCompile>
+    <ClCompile Include="src\fupch.cpp" />
   </ItemGroup>
 </Project>

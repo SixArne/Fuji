@@ -1,3 +1,4 @@
+#include "fupch.h"
 #include "Log.h"
 
 std::shared_ptr<spdlog::logger> Fuji::Log::s_CoreLogger{};

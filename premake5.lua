@@ -8,6 +8,7 @@ workspace "Fuji"
 
 outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Engine
 project "Fuji"
     location "Fuji"
     kind "SharedLib"
@@ -15,6 +16,9 @@ project "Fuji"
 
     targetdir ("bin/" .. outputDir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputDir .. "/%{prj.name}")
+
+    pchheader "fupch.h"
+    pchsource "Fuji/src/fupch.cpp"
 
     files
     {
@@ -24,7 +28,9 @@ project "Fuji"
 
     includedirs
     {
-        "Fuji/vendor/spdlog/include",
+        "%{prj.name}/src",
+        "%{prj.name}/vendor/spdlog/include",
+
         -- Vulkan include
         "C:\\VulkanSDK\\1.3.231.1\\Include"
     }
@@ -57,7 +63,7 @@ project "Fuji"
         defines "FU_DIST"
         optimize "On"
 
-
+-- Sandbox
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
