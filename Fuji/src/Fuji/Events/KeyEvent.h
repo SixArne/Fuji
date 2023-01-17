@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Fuji/types.h"
-
 #include "Event.h"
 
-namespace Fuji {
+namespace Fuji 
+{
 
 	class FUJI_API KeyEvent : public Event
 	{
@@ -30,7 +29,7 @@ namespace Fuji {
 		std::string ToString() const override {
 			std::stringstream ss{};
 
-			ss << "KeyPressedEvent" << m_KeyCode;
+			ss << "KeyPressedEvent " << m_KeyCode << "(" << m_RepeatCount << " repeats)";
 			return ss.str();
 		}
 
@@ -49,7 +48,7 @@ namespace Fuji {
 		std::string ToString() const override {
 			std::stringstream ss{};
 
-			ss << "KeyReleasedEvent" << m_KeyCode;
+			ss << "KeyReleasedEvent " << m_KeyCode;
 			return ss.str();
 		}
 

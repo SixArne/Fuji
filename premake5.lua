@@ -1,12 +1,17 @@
 workspace "Fuji"
     architecture "x64"
-    configurations { 
-        "Debug", 
+    configurations {
+        "Debug",
         "Release",
-        "Dist" 
+        "Dist"
     }
 
 outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+IncludeDir = {}
+IncludeDir["GLFW"] = "%{prj.name}/vendor/GLFW/include"
+
+include "Fuji/vendor/GLFW"
 
 -- Engine
 project "Fuji"
@@ -17,8 +22,8 @@ project "Fuji"
     targetdir ("bin/" .. outputDir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputDir .. "/%{prj.name}")
 
-    pchheader "fupch.h"
-    pchsource "Fuji/src/fupch.cpp"
+    pchheader "fpch.h"
+    pchsource "Fuji/src/fpch.cpp"
 
     files
     {
@@ -32,7 +37,16 @@ project "Fuji"
         "%{prj.name}/vendor/spdlog/include",
 
         -- Vulkan include
-        "C:\\VulkanSDK\\1.3.231.1\\Include"
+       --"C:\\VulkanSDK\\1.3.231.1\\Include",
+
+        -- GLFW
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
@@ -43,7 +57,8 @@ project "Fuji"
         defines
         {
             "FU_PLATFORM_WINDOWS",
-            "FU_BUILD_DLL"
+            "FU_BUILD_DLL",
+            "FU_ENABLE_ASSERTS"
         }
 
         postbuildcommands
@@ -58,7 +73,7 @@ project "Fuji"
     filter "configurations:Release"
         defines "FU_RELEASE"
         symbols "On"
-  
+
     filter "configurations:Dist"
         defines "FU_DIST"
         optimize "On"

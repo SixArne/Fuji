@@ -7,6 +7,12 @@
     <Filter Include="Fuji\Events">
       <UniqueIdentifier>{57729429-C327-0D1F-4C1C-07F6B8D00323}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Fuji.h" />
@@ -34,10 +40,16 @@
     <ClInclude Include="src\Fuji\Log.h">
       <Filter>Fuji</Filter>
     </ClInclude>
+    <ClInclude Include="src\Fuji\Window.h">
+      <Filter>Fuji</Filter>
+    </ClInclude>
     <ClInclude Include="src\Fuji\types.h">
       <Filter>Fuji</Filter>
     </ClInclude>
-    <ClInclude Include="src\fupch.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Fuji\Application.cpp">
@@ -46,6 +58,9 @@
     <ClCompile Include="src\Fuji\Log.cpp">
       <Filter>Fuji</Filter>
     </ClCompile>
-    <ClCompile Include="src\fupch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fpch.cpp" />
   </ItemGroup>
 </Project>

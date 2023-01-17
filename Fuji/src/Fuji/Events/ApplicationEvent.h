@@ -1,23 +1,21 @@
 #pragma once
 
-#include "Fuji/types.h"
-
 #include "Event.h"
 
-namespace Fuji {
+namespace Fuji 
+{
 
 	class FUJI_API WindowResizeEvent : public Event
 	{
 	public:
-		WindowResizeEvent(u32 width, u32 height)
+		WindowResizeEvent(i32 width, i32 height)
 			: m_Width{ width }, m_Height{ height } {}
 
-		inline u32 GetWidth() const		{ return m_Width; };
-		inline u32 GetHeigth() const	{ return m_Height; };
+		inline i32 GetWidth() const		{ return m_Width; };
+		inline i32 GetHeigth() const	{ return m_Height; };
 
-		std::string ToString() const override
-		{
-			std::stringstream ss{};
+		std::string ToString() const override {
+			std::stringstream ss;
 			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
 			return ss.str();
 		}
@@ -26,7 +24,7 @@ namespace Fuji {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
 	private:
-		u32 m_Width{}, m_Height{};
+		i32 m_Width{}, m_Height{};
 	};
 
 	class FUJI_API WindowCloseEvent : public Event

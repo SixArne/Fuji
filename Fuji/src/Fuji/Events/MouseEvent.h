@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Fuji/types.h"
-
 #include "Event.h"
 
 namespace Fuji

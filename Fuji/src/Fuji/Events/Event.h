@@ -1,5 +1,6 @@
 #pragma once
 
+#include "fpch.h"
 #include "Fuji/Core.h"
 
 namespace Fuji {

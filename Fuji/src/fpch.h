@@ -7,12 +7,14 @@
 #include <algorithm>
 #include <functional>
 
-#include <vector>
 #include <string>
 #include <sstream>
+#include <vector>
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Fuji/types.h"
+#include "Fuji/Log.h"
 
 #ifdef FU_PLATFORM_WINDOWS
 	#include <Windows.h>
