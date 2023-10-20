@@ -1,18 +1,17 @@
 module;
 
-#include <iostream>
 #include <format>
 #include <string_view>
 #include <memory>
 
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/fmt/ostr.h>
+#include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/fmt/ostr.h"
 
 export module Logger;
 
 
-namespace Debug
+export namespace Debug
 {
     enum LogType
     {
@@ -23,11 +22,10 @@ namespace Debug
         Critical
     };
 
-    export class Log
+    class Log
     {
     public:
         static void Init();
-        static std::shared_ptr<spdlog::logger>& GetLogger();
 
         template<typename... Args>
         static void Debug(std::string_view format, Args&&... args);
@@ -46,6 +44,7 @@ namespace Debug
 
     private:
         static void LogMessage(const std::string& message, LogType type);
+        static std::shared_ptr<spdlog::logger>& GetLogger();
 
         static std::shared_ptr<spdlog::logger> s_Logger;
     };
@@ -63,52 +62,44 @@ namespace Debug
         s_Logger->info("Logger initialized and ready for use.");
     }
 
-    std::shared_ptr<spdlog::logger>& Log::GetLogger()
-    {
+    std::shared_ptr<spdlog::logger>& Log::GetLogger() {
         return s_Logger;
     }
 
-    export template<typename... Args>
-    void Log::Trace(std::string_view format, Args&&... args)
-    {
+    template<typename... Args>
+    void Log::Trace(std::string_view format, Args&&... args) {
         const std::string& result = std::vformat(format, std::make_format_args(args...));
         LogMessage(result, LogType::Trace);
     }
 
-    export template<typename... Args>
-    void Log::Debug(std::string_view format, Args&&... args)
-    {
+    template<typename... Args>
+    void Log::Debug(std::string_view format, Args&&... args) {
         const std::string& result = std::vformat(format, std::make_format_args(args...));
         LogMessage(result, LogType::Debug);
     }
 
-    export template<typename... Args>
-    void Log::Warn(std::string_view format, Args&&... args)
-    {
+    template<typename... Args>
+    void Log::Warn(std::string_view format, Args&&... args) {
         const std::string& result = std::vformat(format, std::make_format_args(args...));
         LogMessage(result, LogType::Warn);
     }
 
-    export template<typename... Args>
-    void Log::Error(std::string_view format, Args&&... args)
-    {
+    template<typename... Args>
+    void Log::Error(std::string_view format, Args&&... args) {
         const std::string& result = std::vformat(format, std::make_format_args(args...));
         LogMessage(result, LogType::Error);
     }
 
-    export template<typename... Args>
-    void Log::Critical(std::string_view format, Args &&... args)
-    {
+    template<typename... Args>
+    void Log::Critical(std::string_view format, Args &&... args) {
         const std::string& result = std::vformat(format, std::make_format_args(args...));
         LogMessage(result, LogType::Critical);
     }
 
-    void Log::LogMessage(const std::string& message, LogType type)
-    {
+    void Log::LogMessage(const std::string& message, LogType type) {
         auto logger = Log::GetLogger();
 
-        switch (type)
-        {
+        switch (type) {
             case LogType::Trace:
                 logger->trace(message);
                 break;
@@ -127,24 +118,3 @@ namespace Debug
         }
     }
 }
-
-/*
-export template<typename... Args>
-void LogMessage(std::string_view format, Args&&... args)
-{
-    const std::string& result = std::vformat(format, std::make_format_args(args...));
-    Debug::Log::GetLogger()->trace(result);
-}
-
-void ExtraStep(const std::string& message)
-{
-    Debug::Log::GetLogger()->trace(message);
-}
-
-export template<typename... Args>
-void LogMessageWithStep(std::string_view format, Args&&... args)
-{
-    const std::string& result = std::vformat(format, std::make_format_args(args...));
-    ExtraStep(result);
-}
-*/

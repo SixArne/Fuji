@@ -1,3 +1,5 @@
 # Project exclude paths
 /cmake-build-debug-visual-studio/
 /cmake-build-release-visual-studio/
+/cmake-build-debug/
+.idea
