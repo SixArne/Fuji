@@ -1,29 +1,13 @@
 #include <string_view>
-//#include <GLFW/glfw3.h>
-//#include <memory>
+//#include <memory> // including this will fix the issue
 
 import Logger;
-//import Window;
 
 int main() {
     Debug::Log::Init();
-/*
-    WindowProperties windowProperties {
-        .width=800,
-        .height=600,
-        .title{"Engine testing window"}
-    };
-*/
-    Debug::Log::Trace("Hello {}", "world");
-    //LogMessage("Hello {}", "world");
-/*
-    std::unique_ptr<Window> window = std::make_unique<Window>(windowProperties);
-    window->Create();
 
-    while(window->IsRunning()) {
-        window->Update();
-    }
-*/
+    LogMessage("Hello {}", "world");
+    // LogMessageWithHop("Hello {}", "world");
 
     return 0;
 }

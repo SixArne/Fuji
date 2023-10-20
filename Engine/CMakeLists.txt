@@ -4,17 +4,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(FetchContent)
 
 add_executable(VulkanEngine src/Logger.ixx src/Main.ixx
-        src/Window.ixx
 )
 
 include(dependencies/spdlogLibrary.cmake)
-include(dependencies/glmLibrary.cmake)
-include(dependencies/glfwLibrary.cmake)
 
 set (EngineIncludes
         ${SPDLOG_INCLUDE_DIR}/include
-        ${GLM_INCLUDE_DIR}
-        ${GLFW_INCLUDE_DIR}
 )
 
 foreach(engineInclude IN LISTS EngineIncludes)
@@ -29,7 +24,6 @@ target_include_directories(VulkanEngine PUBLIC
 )
 
 target_link_libraries(VulkanEngine PUBLIC
-    glfw
 )
 
 if(MSVC)
