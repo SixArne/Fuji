@@ -42,11 +42,12 @@ export namespace Debug
         template<typename... Args>
         static void Critical(std::string_view format, Args&&... args);
 
-    private:
-        static void LogMessage(const std::string& message, LogType type);
         static std::shared_ptr<spdlog::logger>& GetLogger();
 
+    private:
+        static void LogMessage(const std::string& message, LogType type);
         static std::shared_ptr<spdlog::logger> s_Logger;
+
     };
 
     std::shared_ptr<spdlog::logger> Log::s_Logger{nullptr};
@@ -117,4 +118,12 @@ export namespace Debug
                 break;
         }
     }
+}
+
+
+export template<typename... Args>
+void LogMessage(std::string_view format, Args&&... args)
+{
+    const std::string& generatedString = std::vformat(format, std::make_format_args(args...));
+    Debug::Log::GetLogger()->trace(generatedString);
 }
