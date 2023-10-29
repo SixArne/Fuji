@@ -5,6 +5,7 @@ set(CXX_SCAN_FOR_MODULES ON)
 include(FetchContent)
 
 add_executable(VulkanEngine src/Main.ixx
+
 )
 
 target_sources(VulkanEngine
@@ -16,6 +17,10 @@ target_sources(VulkanEngine
         src/Rendering/Vulkan/Instance.ixx
         src/Rendering/Vulkan/Validation.ixx
         src/Logger.ixx
+        src/Rendering/Vulkan/PhysicalDevice.ixx
+        src/Rendering/Vulkan/Helpers.ixx
+        src/Rendering/Vulkan/References.ixx
+        src/Rendering/Vulkan/Surface.ixx
 )
 
 include(dependencies/spdlogLibrary.cmake)

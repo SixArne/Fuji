@@ -11,6 +11,9 @@ import logger;
 
 import vulkan.validation;
 import vulkan.instance;
+import vulkan.references;
+import vulkan.physicalDevice;
+import vulkan.surface;
 
 namespace Vulkan {
 
@@ -28,9 +31,6 @@ namespace Vulkan {
         Application(Application&&) = delete;
         Application& operator=(Application&&) = delete;
 
-        const VkInstance GetInstance() const;
-        const Validation* GetValidation() const;
-
         const std::vector<const char*> DeviceExtensions = {
                 VK_KHR_SWAPCHAIN_EXTENSION_NAME
         };
@@ -38,6 +38,8 @@ namespace Vulkan {
     private:
         std::unique_ptr<Instance> m_Instance{};
         std::unique_ptr<Validation> m_Validation{};
+        std::unique_ptr<PhysicalDevice> m_PhysicalDevice{};
+        std::unique_ptr<Surface> m_Surface{};
 
         const Window* m_Window{};
     };
@@ -54,17 +56,13 @@ namespace Vulkan {
     void Application::Init() {
         Debug::Log::Trace("[Vulkan] Renderer created");
 
+        References::Get()->SetDeviceExtensions(DeviceExtensions);
+
+        // Order matters here!
         m_Instance = std::make_unique<Instance>();
-        m_Validation = std::make_unique<Validation>(m_Instance->GetInstance());
+        m_Validation = std::make_unique<Validation>();
+        m_Surface = std::make_unique<Surface>();
+        m_PhysicalDevice = std::make_unique<PhysicalDevice>();
     }
-
-    const VkInstance Application::GetInstance() const {
-        return m_Instance->GetInstance();
-    }
-
-    const Validation* Application::GetValidation() const {
-        return m_Validation.get();
-    }
-
 };
 

@@ -4,6 +4,8 @@ module;
 
 export module vulkan.validation;
 
+import vulkan.references;
+
 import std.core;
 
 import logger;
@@ -12,7 +14,7 @@ import logger;
 export namespace Vulkan {
     class Validation final {
     public:
-      Validation(const VkInstance vulkanInstance);
+      Validation();
       ~Validation();
 
       void CreateDebugMessenger();
@@ -42,8 +44,8 @@ export namespace Vulkan {
       VkDebugUtilsMessengerEXT m_DebugMessenger{};
     };
 
-    Validation::Validation(const VkInstance vulkanInstance)
-    : m_VulkanInstance{vulkanInstance}
+    Validation::Validation()
+    : m_VulkanInstance{References::Get()->Instance()}
     {
     #ifdef DEBUG
       m_EnableValidationLayers = true;

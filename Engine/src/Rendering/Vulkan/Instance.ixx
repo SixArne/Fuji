@@ -6,10 +6,9 @@ export module vulkan.instance;
 
 import std.core;
 import vulkan.validation;
-
+import vulkan.references;
 
 import logger;
-
 
 export namespace Vulkan {
     class Instance final {
@@ -82,6 +81,8 @@ export namespace Vulkan {
         }
 
         Debug::Log::Trace("[Vulkan] Instance created");
+
+        References::Get()->SetInstance(m_Instance);
     }
 
     std::vector<const char*> Instance::GetRequiredExtensions() {

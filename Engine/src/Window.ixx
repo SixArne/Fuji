@@ -7,6 +7,7 @@ export module window;
 
 import std.core;
 import logger;
+import vulkan.references;
 
 export struct WindowProperties {
     uint16_t width{800};
@@ -53,6 +54,8 @@ void Window::Create() {
 
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     m_pWindow = glfwCreateWindow(m_Size.x, m_Size.y, m_Title.c_str(), nullptr, nullptr);
+
+    Vulkan::References::Get()->SetWindow(m_pWindow);
 }
 
 void Window::Update() {
