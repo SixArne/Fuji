@@ -1,18 +1,18 @@
 module;
 
 #include <GLFW/glfw3.h>
-#include <vector>
 
-export module Vulkan:Validation;
+export module vulkan.validation;
 
-import Logger;
+import std.core;
 
-import :Application;
+import logger;
 
-namespace Vulkan {
-    export class Validation final {
+
+export namespace Vulkan {
+    class Validation final {
     public:
-      Validation(const ::Application* vulkanApp);
+      Validation(const VkInstance vulkanInstance);
       ~Validation();
 
       void CreateDebugMessenger();
@@ -38,22 +38,21 @@ namespace Vulkan {
 
       bool m_EnableValidationLayers{false};
       VkInstance m_VulkanInstance{};
-      const Application* m_VulkanApp{};
 
       VkDebugUtilsMessengerEXT m_DebugMessenger{};
     };
 
-    Validation::Validation(const ::Application* vulkanApp)
-    : m_VulkanApp{vulkanApp}
+    Validation::Validation(const VkInstance vulkanInstance)
+    : m_VulkanInstance{vulkanInstance}
     {
     #ifdef DEBUG
       m_EnableValidationLayers = true;
     #endif
 
       if (m_EnableValidationLayers) {
-          Debug::Log::Trace("[Vulkan] Validation layers enabled");
+          Debug::Log::Trace("[Vulkan] Enabled validation layers");
       } else {
-          Debug::Log::Trace("[Vulkan] Validation layers disabled");
+          Debug::Log::Trace("[Vulkan] Disabled validation layers");
       }
 
       if (m_EnableValidationLayers && !CheckValidationLayerSupport()) {
@@ -66,7 +65,7 @@ namespace Vulkan {
 
     Validation::~Validation() {
       if (m_EnableValidationLayers) {
-          DestroyDebugUtilsMessengerEXT(m_VulkanApp->GetInstance(), m_DebugMessenger, nullptr);
+          DestroyDebugUtilsMessengerEXT(m_VulkanInstance, m_DebugMessenger, nullptr);
           Debug::Log::Trace("[Vulkan] Validation destroyed");
       }
     }
@@ -122,7 +121,7 @@ namespace Vulkan {
       VkDebugUtilsMessengerCreateInfoEXT createInfo{};
       PopulateDebugMessengerCreateInfo(createInfo);
 
-      if (CreateDebugUtilsMessengerEXT(m_VulkanApp->GetInstance(), &createInfo, nullptr, &m_DebugMessenger) != VK_SUCCESS) {
+      if (CreateDebugUtilsMessengerEXT(m_VulkanInstance, &createInfo, nullptr, &m_DebugMessenger) != VK_SUCCESS) {
           Debug::Log::Error("[Vulkan] Failed to set up debug messenger");
       } else {
           Debug::Log::Trace("[Vulkan] Validation created");

@@ -1,18 +1,18 @@
 module;
 
 #include <GLFW/glfw3.h>
-#include <vector>
 
-export module Vulkan:Instance;
+export module vulkan.instance;
 
-import Logger;
-
-import :Validation;
-
-namespace Vulkan {
+import std.core;
+import vulkan.validation;
 
 
-    export class Instance final {
+import logger;
+
+
+export namespace Vulkan {
+    class Instance final {
     public:
         Instance();
 
@@ -35,9 +35,9 @@ namespace Vulkan {
 #endif
 
         if (m_EnableValidationLayers) {
-            Debug::Log::Trace("[Enabled] Vulkan validation layers");
+            Debug::Log::Trace("[Vulkan] Enabled validation layers");
         } else {
-            Debug::Log::Trace("[Disabled] Vulkan validation layers");
+            Debug::Log::Trace("[Vulkan] Disabled validation layers");
         }
 
         CreateInstance();
@@ -95,5 +95,9 @@ namespace Vulkan {
         }
 
         return extensions;
+    }
+
+    const VkInstance Instance::GetInstance() const {
+        return m_Instance;
     }
 };

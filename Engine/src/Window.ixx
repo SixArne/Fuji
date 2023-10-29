@@ -1,12 +1,12 @@
 module;
 
 #include <GLFW/glfw3.h>
-#include <string>
 #include <glm/glm.hpp>
 
-export module Window;
+export module window;
 
-import Logger;
+import std.core;
+import logger;
 
 export struct WindowProperties {
     uint16_t width{800};

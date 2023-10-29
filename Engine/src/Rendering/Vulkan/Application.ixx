@@ -1,16 +1,16 @@
 module;
 
-#include <vector>
-#include <memory>
 #include <GLFW/glfw3.h>
 
-export module Vulkan:Application;
+export module vulkan.application;
 
-import Window;
-import Logger;
+import std.core;
 
-import :Validation;
-import :Instance;
+import window;
+import logger;
+
+import vulkan.validation;
+import vulkan.instance;
 
 namespace Vulkan {
 
@@ -48,14 +48,14 @@ namespace Vulkan {
     : m_Window{window} {}
 
     Application::~Application() {
-        Debug::Log::Trace("Vulkan Renderer destroyed");
+        Debug::Log::Trace("[Vulkan] Renderer destroyed");
     }
 
     void Application::Init() {
-        Debug::Log::Trace("Vulkan Renderer created");
+        Debug::Log::Trace("[Vulkan] Renderer created");
 
         m_Instance = std::make_unique<Instance>();
-        m_Validation = std::make_unique<Validation>(this);
+        m_Validation = std::make_unique<Validation>(m_Instance->GetInstance());
     }
 
     const VkInstance Application::GetInstance() const {
@@ -63,7 +63,7 @@ namespace Vulkan {
     }
 
     const Validation* Application::GetValidation() const {
-        return m_Validation;
+        return m_Validation.get();
     }
 
 };

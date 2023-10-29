@@ -1,10 +1,7 @@
-#include <string_view>
-#include <memory>
-
-//import Application;
-import Logger;
-import Window;
-//import Rendering.Vulkan.Application;
+import application;
+import logger;
+import window;
+import vulkan.application;
 
 int main() {
     Debug::Log::Init();
@@ -15,13 +12,12 @@ int main() {
         .title{"Engine testing window"}
     };
 
-/*    Debug::Log::Trace("Creating window...");
+    Debug::Log::Trace("Creating window...");
     std::unique_ptr<Application> app = std::make_unique<Application>(windowProperties);
-    app->Start();*/
+    app->Start();
 
-//    auto vulkanApp = std::make_unique<Vulkan::Application>();
-//    vulkanApp->Init();
-
+    auto vulkanApp = std::make_unique<Vulkan::Application>();
+    vulkanApp->Init();
 
     return 0;
 }

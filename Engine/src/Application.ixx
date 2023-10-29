@@ -1,13 +1,8 @@
-module;
+export module application;
 
-#include <memory>
-#include <chrono>
-
-export module Application;
-
-import Window;
-import Logger;
-
+import std.core;
+import window;
+import logger;
 
 export class Application {
 public:

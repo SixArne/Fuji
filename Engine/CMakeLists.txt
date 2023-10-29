@@ -1,15 +1,21 @@
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CXX_SCAN_FOR_MODULES ON)
 
 include(FetchContent)
 
-add_executable(VulkanEngine src/Logger.ixx src/Main.ixx
+add_executable(VulkanEngine src/Main.ixx
+)
+
+target_sources(VulkanEngine
+        PUBLIC
+        FILE_SET CXX_MODULES FILES
         src/Window.ixx
         src/Application.ixx
-        src/Rendering/Vulkan/Vulkan.ixx
         src/Rendering/Vulkan/Application.ixx
         src/Rendering/Vulkan/Instance.ixx
         src/Rendering/Vulkan/Validation.ixx
+        src/Logger.ixx
 )
 
 include(dependencies/spdlogLibrary.cmake)
@@ -44,4 +50,4 @@ target_link_libraries(VulkanEngine PUBLIC
 include(compilerSettings.cmake)
 
 # Add post build copy operations.
-include(postBuildSettings.cmake)
+#include(postBuildSettings.cmake)
