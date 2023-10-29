@@ -9,6 +9,14 @@ This engine's goal is to provide a very optimized engine specifically for standa
 Fuji will also support Desktop games but the emphases is set to standalone VR.
 As such this engine will only support the Vulkan rendering API.
 
+## Building
+
+Please download and set up the following tools
+
+- CMAKE version 3.28.rc3
+- Ninja build tool 1.11
+- C++ compiler with support for modules. (this project assumes MSVC)
+
 ## Features to support
 
 ### ECS system
