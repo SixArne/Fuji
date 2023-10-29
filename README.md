@@ -40,4 +40,7 @@ Support for the PICO Software Development Kit;
 - `glm` for mathematical operations on the C++ side
 - `vsp` for compiling and processing Vulkan shader files (in the making)
 - `spdlog` as a logging library for the engine and game.
-- `glfw` for the editor window creation 
+- `glfw` for the editor window creation
+- `imgui` for editor UI rendering.
+- `vsp` for automatic vulkan shader compilation (needs to be written)
+- `physX` for physics in the engine.
