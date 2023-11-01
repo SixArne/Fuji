@@ -42,5 +42,5 @@ Support for the PICO Software Development Kit;
 - `spdlog` as a logging library for the engine and game.
 - `glfw` for the editor window creation
 - `imgui` for editor UI rendering.
-- `vsp` for automatic vulkan shader compilation (needs to be written)
+- `vsp` for automatic vulkan shader compilation (needs to be re-written https://github.com/SixArne/vsp)
 - `physX` for physics in the engine.
