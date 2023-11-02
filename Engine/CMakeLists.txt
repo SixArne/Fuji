@@ -6,6 +6,7 @@ include(FetchContent)
 
 add_executable(VulkanEngine src/Main.ixx
 
+
 )
 
 target_sources(VulkanEngine
@@ -13,14 +14,16 @@ target_sources(VulkanEngine
         FILE_SET CXX_MODULES FILES
         src/Window.ixx
         src/Application.ixx
-        src/Rendering/Vulkan/Application.ixx
-        src/Rendering/Vulkan/Instance.ixx
-        src/Rendering/Vulkan/Validation.ixx
+        src/rendering/Vulkan/Application.ixx
+        src/rendering/Vulkan/Instance.ixx
+        src/rendering/Vulkan/Validation.ixx
         src/Logger.ixx
-        src/Rendering/Vulkan/PhysicalDevice.ixx
-        src/Rendering/Vulkan/Helpers.ixx
-        src/Rendering/Vulkan/References.ixx
-        src/Rendering/Vulkan/Surface.ixx
+        src/rendering/Vulkan/PhysicalDevice.ixx
+        src/rendering/Vulkan/Helpers.ixx
+        src/rendering/Vulkan/References.ixx
+        src/rendering/Vulkan/Surface.ixx
+        src/utils/types.ixx
+        src/rendering/Vulkan/Device.ixx
 )
 
 include(dependencies/spdlogLibrary.cmake)

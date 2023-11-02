@@ -62,6 +62,9 @@ export namespace Vulkan {
           return;
       }
 
+      References::Get()->SetValidationLayers(ValidationLayers);
+      References::Get()->SetIsValidationEnabled(m_EnableValidationLayers);
+
       CreateDebugMessenger();
     }
 

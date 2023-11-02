@@ -32,6 +32,12 @@ export namespace Vulkan {
         const std::vector<const char*>& DeviceExtensions();
         void SetDeviceExtensions(const std::vector<const char*> deviceExtensions);
 
+        std::vector<const char*>& ValidationLayers();
+        void SetValidationLayers(const std::vector<const char*> validationLayers);
+
+        bool IsValidationEnabled();
+        void SetIsValidationEnabled(bool isEnabled);
+
         GLFWwindow* Window();
         void SetWindow(GLFWwindow* window);
 
@@ -40,12 +46,16 @@ export namespace Vulkan {
         static std::mutex s_ReferenceMutex;
         static std::unique_ptr<References> s_Instance;
 
+        // TODO: Convert all these to std::optional
+
         VkDevice m_Device{};
         VkPhysicalDevice m_PhysicalDevice{};
         VkInstance m_Instance{};
         VkSurfaceKHR m_Surface{};
         GLFWwindow* m_Window{};
+        bool m_IsValidationEnabled{};
         std::vector<const char*> m_DeviceExtensions{};
+        std::vector<const char*> m_ValidationLayers{};
     };
 
     std::mutex References::s_ReferenceMutex{};
@@ -111,5 +121,23 @@ export namespace Vulkan {
     void References::SetWindow(GLFWwindow *window) {
         std::lock_guard<std::mutex> lock(s_ReferenceMutex);
         m_Window = window;
+    }
+
+    std::vector<const char *> &References::ValidationLayers() {
+        return m_ValidationLayers;
+    }
+
+    void References::SetValidationLayers(const std::vector<const char *> validationLayers) {
+        std::lock_guard<std::mutex> lock(s_ReferenceMutex);
+        m_ValidationLayers = validationLayers;
+    }
+
+    bool References::IsValidationEnabled() {
+        return m_IsValidationEnabled;
+    }
+
+    void References::SetIsValidationEnabled(bool isEnabled) {
+        std::lock_guard<std::mutex> lock(s_ReferenceMutex);
+        m_IsValidationEnabled = isEnabled;
     }
 }

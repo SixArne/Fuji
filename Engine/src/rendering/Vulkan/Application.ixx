@@ -14,6 +14,7 @@ import vulkan.instance;
 import vulkan.references;
 import vulkan.physicalDevice;
 import vulkan.surface;
+import vulkan.device;
 
 namespace Vulkan {
 
@@ -39,6 +40,7 @@ namespace Vulkan {
         std::unique_ptr<Instance> m_Instance{};
         std::unique_ptr<Validation> m_Validation{};
         std::unique_ptr<PhysicalDevice> m_PhysicalDevice{};
+        std::unique_ptr<Device> m_Device{};
         std::unique_ptr<Surface> m_Surface{};
 
         const Window* m_Window{};
@@ -63,6 +65,7 @@ namespace Vulkan {
         m_Validation = std::make_unique<Validation>();
         m_Surface = std::make_unique<Surface>();
         m_PhysicalDevice = std::make_unique<PhysicalDevice>();
+        m_Device = std::make_unique<Device>();
     }
 };
 
